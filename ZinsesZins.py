@@ -60,3 +60,28 @@ print("\ninterest earned")
 print(format_financial_number(balance - total_contribution))
 
 
+#EXAMPLE
+#input:
+"""
+initial_investment = 150
+monthly_contribution = 0
+interest_rate = 1.0+(0.07/100.0)
+number_of_years = 5
+"""
+#output:
+"""
+5 years later...
+
+future value:
+$    539.8
+
+total contributions:
+$    150.0
+
+interest earned
+$    389.8
+
+
+...Program finished with exit code 0
+Press ENTER to exit console.
+"""

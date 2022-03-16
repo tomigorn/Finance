@@ -29,6 +29,8 @@ function to format numbers into financial format
 input: float number
 output: string
 """
+
+
 def format_financial_number(input_number):
     output_string = input_number
     output_string = format(output_string, ".1f")
@@ -37,6 +39,15 @@ def format_financial_number(input_number):
     output_string = format(output_string, ">9")
     output_string = "$" + output_string
     return output_string
+
+
+def format_percentage_number(input_number):
+    output_string = input_number
+    output_string = format(output_string, ".1f")
+    output_string = float(output_string)
+    output_string = format(output_string, ",").replace(",","'")
+    return output_string
+
 
 #business logic of compound interest calculation
 days_spent = 0
@@ -56,6 +67,7 @@ print("\nfuture value:")
 print(format_financial_number(balance))
 print("\ntotal contributions:")
 print(format_financial_number(total_contribution))
+print("\n", format_percentage_number(100 * balance / total_contribution), "% gain")
 print("\ninterest earned")
 print(format_financial_number(balance - total_contribution))
 

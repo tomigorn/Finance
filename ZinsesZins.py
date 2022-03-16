@@ -11,9 +11,9 @@ interest given ->> daily
 ### CHANGE HERE:
 ### ### ### ### ### ### ### ### ###
 initial_investment = 150
-monthly_contribution = 0
-interest_rate = 1.0+(0.07/100.0)
-number_of_years = 5
+monthly_contribution = 50
+interest_rate = 1.0+(0.1/100.0)
+number_of_years = 10
 ### ### ### ### ### ### ### ### ###
 ### END OF CHANGE
 ### ### ### ### ### ### ### ### ###
@@ -64,24 +64,26 @@ print(format_financial_number(balance - total_contribution))
 #input:
 """
 initial_investment = 150
-monthly_contribution = 0
-interest_rate = 1.0+(0.07/100.0)
-number_of_years = 5
+monthly_contribution = 50
+interest_rate = 1.0+(0.1/100.0)
+number_of_years = 10
 """
 #output:
 """
-5 years later...
+10 years later...
 
 future value:
-$    539.8
+$ 67'893.9
 
 total contributions:
-$    150.0
+$  6'250.0
+
+ 1'086.3 % gain
 
 interest earned
-$    389.8
+$ 61'643.9
 
 
-...Program finished with exit code 0
-Press ENTER to exit console.
+** Process exited - Return Code: 0 **
+Press Enter to exit terminal
 """

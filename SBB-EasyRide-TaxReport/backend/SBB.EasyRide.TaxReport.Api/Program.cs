@@ -1,10 +1,29 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.Identity.Web;
+using Microsoft.Graph;
+using AspNetCoreBuilder = Microsoft.AspNetCore.Builder;
+
+var builder = AspNetCoreBuilder.WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication("Bearer")
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+builder.Services.AddAuthorization();
+
+builder.Services.AddScoped<GraphServiceClient>(sp =>
+{
+    var tokenAcquisition = sp.GetRequiredService<Microsoft.Identity.Web.ITokenAcquisition>();
+    return new GraphServiceClient(new Microsoft.Graph.DelegateAuthenticationProvider(async (requestMessage) =>
+    {
+        var token = await tokenAcquisition.GetAccessTokenForUserAsync(new[] { "Mail.Read" });
+        requestMessage.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+    }));
+});
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>

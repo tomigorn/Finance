@@ -1,3 +1,10 @@
+.env.development
+.env.production
+
+# ###################################
+# Generated gitignore
+# ###################################
+
 # Logs
 logs
 *.log

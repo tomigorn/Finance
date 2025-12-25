@@ -4,6 +4,7 @@ import { loginRequest } from "./authConfig";
 
 function App() {
   const { instance, accounts } = useMsal();
+  const isLoggedIn = accounts.length > 0;
   const [health, setHealth] = useState<string>("Loading...");
   const [user, setUser] = useState<string | null>(null);
 
@@ -30,16 +31,27 @@ function App() {
       });
   };
 
+  const handleLogout = async () => {
+    await instance.logoutPopup({
+      postLogoutRedirectUri: "https://localhost:5173",
+    });
+  };
+
+
   return (
     <div style={{ padding: 20 }}>
-      <h1>Backend Health Check</h1>
-      <p>Status HTTPS: {health}</p>
+      <h1>Microsoft Login</h1>
 
-      <h2>Microsoft Login</h2>
-      {user ? (
-        <p>Logged in as: {user}</p>
+      {isLoggedIn ? (
+        <>
+          <p>Logged in as: {accounts[0].username}</p>
+          <button onClick={handleLogout}>Logout</button>
+        </>
       ) : (
-        <button onClick={handleLogin}>Login with Microsoft</button>
+        <>
+          <p>Not logged in</p>
+          <button onClick={handleLogin}>Login</button>
+        </>
       )}
     </div>
   );

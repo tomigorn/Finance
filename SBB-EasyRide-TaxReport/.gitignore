@@ -1,3 +1,10 @@
+backend/SBB.EasyRide.TaxReport.Api/appsettings.Development.json
+backend/SBB.EasyRide.TaxReport.Api/appsettings.Production.json
+
+# ###############################################
+# Generated parts
+# ###############################################
+
 # Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,react
 
